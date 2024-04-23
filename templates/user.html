@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href={{ url_for('static', filename='css/user.css') }}>
+        <link rel="stylesheet" href="../static/css/user.css">
+        <title>Home page</title>
+    </head>
+    <body>
+        <header>
+            <h2>{{ login }}</h2>
+            <div class="logout-button">
+                <a href="/logout">Log out</a>
+            </div>
+        </header>
+        
+        <main>
+            <form action="/send_post" method="post">
+                <h1>Write new post!</h1>
+                <div class="text-area">
+                    <textarea name="post-text"></textarea>
+                    <input type="submit" value="Publish">
+                </div>
+            </form>
+
+            {% for post in posts %}
+            <div class="post">
+                <div class="post-header">
+                    <p class="name">{{ post['author_id'] }}</p>
+                    <p class="date">{{ post['publish_time'] }}</p>
+                </div>
+                <p class="text">{{ post['content'] }}</p>
+            </div>
+            {% endfor %}
+
+        </main>
+    </body>
+</html>

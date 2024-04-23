@@ -1,0 +1,103 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins";
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #0b0c10;
+}
+body header {
+  width: 100%;
+  padding: 15px;
+  display: flex;
+  position: fixed;
+  justify-content: space-between;
+  background: #1f2833;
+}
+body header h2 {
+  color: #66fcf1;
+}
+body header .logout-button {
+  padding: 5px;
+  border: 1px solid #45a29e;
+}
+body header .logout-button a {
+  color: #c5c6c7;
+  font-size: 18px;
+  text-decoration: none;
+}
+body main {
+  margin: 100px 0;
+  padding: 15px;
+  width: 1110px;
+  display: flex;
+  flex-direction: column;
+  background: #1f2833;
+  border-radius: 15px;
+}
+body main form {
+  padding: 15px;
+  display: flex;
+  background: #334456;
+  border-radius: 10px;
+}
+body main form h1 {
+  width: 115px;
+  color: #66fcf1;
+  margin: 0 0 20px;
+}
+body main form .text-area {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+body main form .text-area textarea {
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  background: #1f2833;
+  color: #c5c6c7;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+}
+body main form .text-area input {
+  background: #334456;
+  color: #c5c6c7;
+  font-size: 18px;
+  border: 1px solid #45a29e;
+  border-radius: 5px;
+}
+body main .post {
+  margin: 30px 0;
+  padding: 15px;
+  background: #334456;
+  color: #c5c6c7;
+  border-radius: 10px;
+}
+body main .post .post-header {
+  display: flex;
+  justify-content: space-between;
+}
+body main .post .post-header .name {
+  color: #66fcf1;
+  font-size: 18px;
+}
+body main .post .post-header .date {
+  color: #45a29e;
+  font-size: 12px;
+}
+body main .post .text {
+  margin: 15px 0 0;
+  font-size: 18px;
+}/*# sourceMappingURL=user.css.map */
