@@ -3,15 +3,12 @@ import utils
 import db_utils
 import math
 
-# Настрокйи
-# authed_id = None
-
 # Приложение
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'for i in range(999):'
 
 # Функция проверки входа
-def check_auth():
+def check_auth() -> bool:
     if 'auth id' in session:
         if session['auth id']: return True
 
@@ -20,7 +17,7 @@ def check_auth():
     return False
 
 # Функция проверки наличия доступа
-def has_access(for_authed=True):
+def has_access(for_authed=True) -> bool:
     var = for_authed and check_auth()
     return var or not var
 
@@ -42,10 +39,11 @@ def login():
 @app.route('/user')
 def user():
     if has_access(True):
+        page = request.args.get('page', 1, type=int)
         return render_template(
             'user.html', 
             login = db_utils.get_login(session['auth id']), 
-            posts = db_utils.get_posts(),
+            posts = db_utils.get_posts(page),
             pages = math.ceil(db_utils.count_posts() / 5)
         )
     return redirect('/')
@@ -79,13 +77,13 @@ def try_reg():
     login = request.form['login']
     password = request.form['password']
     password_repeat = request.form['password-repeat']
+    word = request.form['word']
 
     # Проверка данных
-    validation = utils.validate_reg(login, password, password_repeat)
-    print(validation)
+    validation = utils.validate_reg(login, password, password_repeat, word)
 
     if validation[0]:
-        db_utils.add_user(login, password)
+        db_utils.add_user(login, password, word)
         return redirect('/login')
     else:
         return redirect(f'/reg?error={validation[1]}')
@@ -101,9 +99,49 @@ def logout():
 def send_post():
     user_id = session['auth id']
     text = request.form['post-text']
-    db_utils.add_post(user_id, text)
+    
+    if text:
+        db_utils.add_post(user_id, text)
 
     return redirect('/user')
+
+# Путь к восстановлению пароля
+@app.route('/restore_password_link')
+def restore_password():
+    return render_template('password restore.html')
+
+# Попытка восстановления пароля
+@app.route('/try_restore_password', methods=['POST'])
+def try_restore_password():
+    login = request.form['login']
+    word = request.form['word']
+    
+    if db_utils.check_user(login, word=word):
+        session['user_login_to_restore_password'] = login
+        print(session['user_login_to_restore_password'])
+        return redirect('/restoring_password')
+    
+    return render_template('password restore.html')
+
+# Восстановление пароля
+@app.route('/restoring_password')
+def restoring_password():
+    return render_template('restoring password.html', error=request.args.get('error'))
+
+# Попытка восстановления пароля
+@app.route('/try_restoring_password', methods=['POST'])
+def try_restoring_password():
+    new_password = request.form['password']
+    new_password_repeat = request.form['password-repeat']
+    
+    # Проверка данных
+    validation = utils.password_check(new_password, new_password_repeat)
+    
+    if validation[0]:
+        db_utils.update_password(session['user_login_to_restore_password'], new_password)
+        return redirect('login')
+    else:
+        return redirect(f'/restoring_password?error={validation[1]}')
 
 # Запуск
 app.run()

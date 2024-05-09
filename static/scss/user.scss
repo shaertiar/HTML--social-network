@@ -7,6 +7,22 @@
     font-family: 'Poppins';
 }
 
+::-webkit-scrollbar {
+    width: 15px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0b0c10;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #45a29e;
+    
+    &:hover {
+        background: #66fcf1;
+    }
+}
+
 html {
     height: 100%;
 }
@@ -76,6 +92,7 @@ body {
                     font-size: 18px;
                     border: none;
                     border-radius: 5px;
+                    resize: none;
                 }
 
                 input {
@@ -89,7 +106,7 @@ body {
         }
 
         .post {
-            margin: 30px 0;
+            margin: 30px 0 0;
             padding: 15px;
             background: #334456;
             color: #c5c6c7;
@@ -113,6 +130,21 @@ body {
             .text {
                 margin: 15px 0 0;
                 font-size: 18px;
+            }
+        }
+
+        .pagination {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+
+            a {
+                padding: 5px 15px;
+                background: #334456;
+                color: #45a29e;
+                text-decoration: none;
+                border-radius: 10px;
             }
         }
     }

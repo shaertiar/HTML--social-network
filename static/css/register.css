@@ -50,19 +50,22 @@ body {
 .container form input::placeholder {
   color: #c5c6c7;
 }
+.container form input[type=submit] {
+  cursor: pointer;
+}
 .container form .error-msg {
   color: #f00;
   font-size: 16px;
 }
-.container .log_button {
+.container a {
+  font-size: 15px;
+  color: #c5c6c7;
+  text-decoration: none;
+}
+.container a .log_button {
   margin-top: 20px;
   padding: 5px;
   display: flex;
   justify-content: center;
   border: 1px solid #45a29e;
-}
-.container .log_button a {
-  font-size: 15px;
-  color: #c5c6c7;
-  text-decoration: none;
 }/*# sourceMappingURL=register.css.map */

@@ -14,14 +14,17 @@
                 <input type="text" placeholder="Login" name="login">
                 <input type="password" placeholder="Password" name="password">
                 <input type="password" placeholder="Password repeat" name="password-repeat">
+                <input type="text" placeholder="Favorite word" name="word">
                 <input type="submit" value="Create account">
                 {% if error %}
                     <p class="error-msg">{{ error }}</p>
                 {% endif %}
             </form>
-            <div class="log_button">
-                <a href="/login">Sign in</a>
-            </div>
+            <a href="/login">
+                <div class="log_button">
+                    Sign in
+                </div>
+            </a>
         </div>
     </body>
 </html>

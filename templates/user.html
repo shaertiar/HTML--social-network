@@ -5,6 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href={{ url_for('static', filename='css/user.css') }}>
         <link rel="stylesheet" href="../static/css/user.css">
+        <link rel="shortcut icon" href={{ url_for('static', filename='static/img/logo.png') }}>
+        <link rel="shortcut icon" href="../static/img/logo.png">
         <title>Home page</title>
     </head>
     <body>
@@ -27,13 +29,20 @@
             {% for post in posts %}
             <div class="post">
                 <div class="post-header">
-                    <p class="name">{{ post['author_id'] }}</p>
+                    <p class="name">{{ post['author'] }}</p>
                     <p class="date">{{ post['publish_time'] }}</p>
                 </div>
                 <p class="text">{{ post['content'] }}</p>
             </div>
             {% endfor %}
-
+            
+            {% if pages > 1 %}
+            <div class="pagination">
+                {% for page in range(1, pages + 1) %}
+                <a href="/user?page={{ page }}">{{ page }}</a>
+                {% endfor %}
+            </div>
+            {% endif %}
         </main>
     </body>
 </html>

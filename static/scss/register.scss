@@ -49,6 +49,10 @@ body {
             &::placeholder {
                 color: #c5c6c7;
             }
+
+            &[type="submit"] {
+                cursor: pointer;
+            }
         }
         .error-msg {
             color: #f00;
@@ -56,17 +60,17 @@ body {
         }
     }
 
-    .log_button {
-        margin-top: 20px;
-        padding: 5px;
-        display: flex;
-        justify-content: center;
-        border: 1px solid #45a29e;
+    a {
+        font-size: 15px;
+        color: #c5c6c7;
+        text-decoration: none;
 
-        a {
-            font-size: 15px;
-            color: #c5c6c7;
-            text-decoration: none;
+        .log_button {
+            margin-top: 20px;
+            padding: 5px;
+            display: flex;
+            justify-content: center;
+            border: 1px solid #45a29e;
         }
     }
 }

@@ -57,7 +57,7 @@ body {
   color: #66fcf1;
 }
 .container form a:hover {
-  text-decoration: double;
+  text-decoration: dashed;
 }
 .container a {
   font-size: 15px;
